@@ -26,6 +26,9 @@ struct BorderColor
 	long m_borderColor;
 };
 
+#pragma warning(push)
+#pragma warning(disable:4838)
+
 const BorderColor BORDER_COLORS[] = 
 {
 	{ "Orange",					0xFFFF8700, },
@@ -37,5 +40,7 @@ const BorderColor BORDER_COLORS[] =
 	{ "Purple",					0xFF9E00FF, },
 	{ "Pink",						0xFFFF8670, },
 };
+
+#pragma warning(pop)
 
 const long BORDER_COLORS_SIZE = sizeof(BORDER_COLORS) / sizeof (BORDER_COLORS[0]);

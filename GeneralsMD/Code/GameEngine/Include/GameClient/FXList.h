@@ -212,7 +212,7 @@ public:
 private:
 
 	// use the hashing function for Ints. 
-	typedef std::hash_map< NameKeyType, FXList, rts::hash<NameKeyType>, rts::equal_to<NameKeyType> > FXListMap;
+	typedef std::hash_map< NameKeyType, FXList> FXListMap;
 
 	FXListMap m_fxmap;
 

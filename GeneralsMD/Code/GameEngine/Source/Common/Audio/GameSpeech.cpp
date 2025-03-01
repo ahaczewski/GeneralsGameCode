@@ -199,7 +199,7 @@ class Speaker : public SpeakerInterface
 };
 
 typedef std::vector<Speech> VecSpeech;
-typedef std::hash_map<const char*, Speech, std::hash<const char*>, rts::equal_to<const char*> > HashSpeech;
+typedef std::hash_map<const char*, Speech> HashSpeech;
 
 //===============================
 // SpeechManager: 

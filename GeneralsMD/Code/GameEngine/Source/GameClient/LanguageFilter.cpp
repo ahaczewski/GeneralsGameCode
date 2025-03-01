@@ -51,6 +51,7 @@ LanguageFilter::~LanguageFilter() {
 
 void LanguageFilter::init() {
 	m_wordList.clear();
+#if 0
 
 	// read in the file already.
 	File *file1 = TheFileSystem->openFile(BadWordFileName, File::READ | File::BINARY);
@@ -75,6 +76,7 @@ void LanguageFilter::init() {
 
 	file1->close();
 	file1 = NULL;
+#endif
 }
 
 void LanguageFilter::reset() {

@@ -122,7 +122,7 @@ public:
 
 private:
 
-	typedef std::hash_map< NameKeyType, ArmorTemplate, rts::hash<NameKeyType>, rts::equal_to<NameKeyType> > ArmorTemplateMap;
+	typedef std::hash_map< NameKeyType, ArmorTemplate> ArmorTemplateMap;
 	ArmorTemplateMap m_armorTemplates;
 
 };

@@ -108,6 +108,7 @@ public:
 	friend class LockClass;
 };
 
+#if 0
 // ----------------------------------------------------------------------------
 //
 // Fast critical section is really fast version of CriticalSection. The downside
@@ -173,5 +174,8 @@ public:
 
   friend class LockClass;
 };
+#else
+using FastCriticalSectionClass = CriticalSectionClass;
+#endif
 
 #endif

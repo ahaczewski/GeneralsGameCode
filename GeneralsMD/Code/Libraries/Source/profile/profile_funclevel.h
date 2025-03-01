@@ -22,7 +22,7 @@
 // $Revision: #3 $
 // $DateTime: 2003/07/09 10:57:23 $
 //
-// ©2003 Electronic Arts
+// ï¿½2003 Electronic Arts
 //
 // Function level profiling
 //////////////////////////////////////////////////////////////////////////////
@@ -183,9 +183,9 @@ public:
 
       \return profile thread ID
     */
-    unsigned GetId(void) const
+    uintptr_t GetId(void) const
     {
-      return unsigned(m_threadID);
+      return uintptr_t(m_threadID);
     }
 
   private:

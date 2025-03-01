@@ -70,7 +70,7 @@ enum DrawableID;
 
 #include <algorithm>
 #include <bitset>
-#include <hash_map>
+#include <unordered_map>
 #include <list>
 #include <map>
 #include <queue>
@@ -78,6 +78,11 @@ enum DrawableID;
 #include <stack>
 #include <string>
 #include <vector>
+
+namespace std {
+	template<class K, class T, class H = hash<K>, class E = equal_to<K> >
+	using hash_map = unordered_map<K, T, H, E>;
+}
 
 // List of AsciiStrings to allow list of ThingTemplate names from INI and such
 typedef std::list< AsciiString >													AsciiStringList;
@@ -113,28 +118,17 @@ typedef std::map< NameKeyType, Real, std::less<NameKeyType> > ProductionChangeMa
 typedef std::map< NameKeyType, VeterancyLevel, std::less<NameKeyType> > ProductionVeterancyMap;
 
 // Some useful, common hash and equal_to functors for use with hash_map
-namespace rts 
+namespace rts
 {
-	
-	// Generic hash functor. This should almost always be overridden for 
+
+	// Generic hash functor. This should almost always be overridden for
 	// specific types.
 	template<typename T> struct hash
 	{
 		size_t operator()(const T& __t) const
-		{ 
+		{
 			std::hash<T> tmp;
 			return tmp(__t);
-		}
-	};
-
-	// Generic equal_to functor. This should be overridden if there is no
-	// operator==, or if that isn't the behavior desired. (For instance, in
-	// the case of pointers.)
-	template<typename T> struct equal_to
-	{
-		Bool operator()(const T& __t1, const T& __t2) const
-		{
-			return (__t1 == __t2);
 		}
 	};
 
@@ -152,7 +146,7 @@ namespace rts
 	template<> struct hash<NameKeyType>
 	{
 		size_t operator()(NameKeyType nkt) const
-		{ 
+		{
 			std::hash<UnsignedInt> tmp;
 			return tmp((UnsignedInt)nkt);
 		}
@@ -161,7 +155,7 @@ namespace rts
 	template<> struct hash<DrawableID>
 	{
 		size_t operator()(DrawableID nkt) const
-		{ 
+		{
 			std::hash<UnsignedInt> tmp;
 			return tmp((UnsignedInt)nkt);
 		}
@@ -170,38 +164,18 @@ namespace rts
 	template<> struct hash<ObjectID>
 	{
 		size_t operator()(ObjectID nkt) const
-		{ 
+		{
 			std::hash<UnsignedInt> tmp;
 			return tmp((UnsignedInt)nkt);
-		}
-	};
-
-	// This is the equal_to overload for char* comparisons. We compare the
-	// strings to determine whether they are equal or not.
-	// Other overloads should go into specific header files, not here (unless
-	// they are ot be used in lots of places.)
-	template<> struct equal_to<const char*>
-	{
-		Bool operator()(const char* s1, const char* s2) const
-		{
-			return strcmp(s1, s2) == 0;
 		}
 	};
 
 	template<> struct hash<AsciiString>
 	{
 		size_t operator()(AsciiString ast) const
-		{ 
+		{
 			std::hash<const char *> tmp;
 			return tmp((const char *) ast.str());
-		}
-	};
-
-	template<> struct equal_to<AsciiString>
-	{
-		Bool operator()(const AsciiString& __t1, const AsciiString& __t2) const
-		{
-			return (__t1 == __t2);
 		}
 	};
 
@@ -221,5 +195,17 @@ namespace rts
 		}
 	};
 }
+
+// Hash function specialization for std::unordered_map (modern C++)
+#define IMPL_STD_HASH(T) \
+	template<> \
+	struct std::hash<T> { \
+		size_t operator()(const T& key) const { return rts::hash<T>()(key); } \
+	}
+IMPL_STD_HASH(NameKeyType);
+IMPL_STD_HASH(DrawableID);
+IMPL_STD_HASH(ObjectID);
+IMPL_STD_HASH(AsciiString);
+#undef IMPL_STD_HASH
 
 #endif /* __STLTYPEDEFS_H__ */

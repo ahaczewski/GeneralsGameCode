@@ -310,7 +310,7 @@ TurretAI::TurretAI(Object* owner, const TurretAIData* data, WhichTurretType tur)
 
 #ifdef _DEBUG
 	char smbuf[256];
-	sprintf(smbuf, "TurretStateMachine for tur %08lx slot %d",this,tur);
+	sprintf(smbuf, "TurretStateMachine for tur %08p slot %d",this,tur);
 	const char* smname = smbuf;
 #else
 	const char* smname = "TurretStateMachine";
@@ -721,7 +721,7 @@ UpdateSleepTime TurretAI::updateTurretAI()
 		if (m_didFire)
 		{
 			// if we fired, enable sweeping for a few frames.
-			const ENABLE_SWEEP_FRAME_COUNT = 3;
+			const int ENABLE_SWEEP_FRAME_COUNT = 3;
 			m_enableSweepUntil = now + ENABLE_SWEEP_FRAME_COUNT;
 			m_continuousFireExpirationFrame = now + ENABLE_SWEEP_FRAME_COUNT;// so the recent firing will not interrupt the moving sound
 		}

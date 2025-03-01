@@ -35,26 +35,28 @@
 //#define _STLP_USE_CUSTOM_NEWALLOC		STLSpecialAlloc
 class STLSpecialAlloc;
 
-
-// We actually don't use Windows for much other than timeGetTime, but it was included in 40 
+// We actually don't use Windows for much other than timeGetTime, but it was included in 40
 // different .cpp files, so I bit the bullet and included it here.
 // PLEASE DO NOT ABUSE WINDOWS OR IT WILL BE REMOVED ENTIRELY. :-)
 //--------------------------------------------------------------------------------- System Includes 
 #define WIN32_LEAN_AND_MEAN
+#define AnimateWindow AnimateWindow_WIN
 #include <atlbase.h>
 #include <windows.h>
+#undef AnimateWindow
+#undef AI_PASSIVE
 
 #include <assert.h>
 #include <ctype.h>
 #include <direct.h>
 #include <EXCPT.H>
 #include <float.h>
-#include <fstream.h>
+#include <fstream>
 #include <imagehlp.h>
 #include <io.h>
 #include <limits.h>
 #include <lmcons.h>
-#include <mapicode.h>
+// #include <mapicode.h>
 #include <math.h>
 #include <memory.h>
 #include <mmsystem.h>

@@ -1635,7 +1635,8 @@ void* MemoryPool::allocateBlockDoNotZeroImplementation(DECLARE_LITERALSTRING_ARG
 	{
 		// hmm... the current 'free' blob has nothing available. look and see if there
 		// are any other existing blobs with freespace.
-		for (MemoryPoolBlob *blob = m_firstBlob; blob != NULL; blob = blob->getNextInList()) 
+		MemoryPoolBlob *blob = m_firstBlob;
+		for (; blob != NULL; blob = blob->getNextInList())
 		{
 			if (blob->hasAnyFreeBlocks())
 			 	break;
@@ -2248,7 +2249,7 @@ void *DynamicMemoryAllocator::allocateBytesDoNotZeroImplementation(Int numBytes 
 
 #if defined(_DEBUG) || defined(_INTERNAL)
   // check alignment
-  if (unsigned(result)&3)
+  if (reinterpret_cast<uintptr_t>(result)&3)
     throw ERROR_OUT_OF_MEMORY;
 #endif
 
@@ -3138,7 +3139,8 @@ void MemoryPoolFactory::debugMemoryReport(Int flags, Int startCheckpoint, Int en
 		DEBUG_LOG(("------------------------------------------\n"));
 		DEBUG_LOG(("Begin Pool Overflow Report\n"));
 		DEBUG_LOG(("------------------------------------------\n"));
-		for (MemoryPool *pool = m_firstPoolInFactory; pool; pool = pool->getNextPoolInList())
+		MemoryPool *pool = m_firstPoolInFactory;
+		for (; pool; pool = pool->getNextPoolInList())
 		{
 			if (pool->getPeakBlockCount() > pool->getInitialBlockCount())
 			{
@@ -3450,8 +3452,8 @@ void initMemoryManager()
 	linktest = new char[8];
 	delete [] linktest;
 
-	linktest = new char("",1);
-	delete linktest;
+	// linktest = new char("",1);
+	// delete linktest;
 
 #ifdef MEMORYPOOL_OVERRIDE_MALLOC
 	linktest = (char*)malloc(1);

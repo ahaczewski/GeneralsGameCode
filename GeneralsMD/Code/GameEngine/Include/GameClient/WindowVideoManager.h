@@ -146,17 +146,8 @@ public:
 private:
 
 	typedef const GameWindow* ConstGameWindowPtr;
-	// use special class for hashing, since std::hash won't compile for arbitrary ptrs
-	struct hashConstGameWindowPtr
-	{
-	size_t operator()(ConstGameWindowPtr p) const
-	{
-		std::hash<UnsignedInt> hasher;
-		return hasher((UnsignedInt)p);
-	}
-	};
 
-	typedef std::hash_map< ConstGameWindowPtr, WindowVideo *, hashConstGameWindowPtr, std::equal_to<ConstGameWindowPtr> > WindowVideoMap;
+	typedef std::hash_map< ConstGameWindowPtr, WindowVideo * > WindowVideoMap;
 
 	WindowVideoMap m_playingVideos;								///< List of currently playin Videos
 	//WindowVideoMap m_pausedVideos;									///< List of currently paused Videos
@@ -165,6 +156,18 @@ private:
 
 
 };
+
+// use special class for hashing, since std::hash won't compile for arbitrary ptrs
+// template<>
+// struct std::hash<const GameWindow*>
+// {
+// 	size_t operator()(const GameWindow* p) const noexcept
+// 	{
+// 		std::hash<uintptr_t> hasher;
+// 		return hasher(reinterpret_cast<uintptr_t>(p));
+// 	}
+// };
+
 
 //-----------------------------------------------------------------------------
 // INLINING ///////////////////////////////////////////////////////////////////
