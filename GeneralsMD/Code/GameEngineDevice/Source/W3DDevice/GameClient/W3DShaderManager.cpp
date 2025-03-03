@@ -73,7 +73,6 @@
 #include "d3dx8tex.h"
 #include "dx8caps.h"
 #include "common/gamelod.h"
-#include "Benchmark.h"
 
 #ifdef _INTERNAL
 // for occasional debugging...
@@ -3110,11 +3109,6 @@ Bool W3DShaderManager::testMinimumRequirements(ChipsetType *videoChipType, CpuTy
 
 	if (numRAM)
 		*numRAM=CPUDetectClass::Get_Total_Physical_Memory();
-
-	if (intBenchIndex && floatBenchIndex && memBenchIndex)
-	{
-		RunBenchmark(0, NULL, floatBenchIndex, intBenchIndex, memBenchIndex);
-	}
 
 	return TRUE;
 }
