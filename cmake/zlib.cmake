@@ -6,11 +6,23 @@ FetchContent_Populate(zlib DOWNLOAD_EXTRACT_TIMESTAMP
     GIT_TAG        main
     SOURCE_DIR     ${ZLIB_DIR})
 
-file(GLOB ZLIB_HEADERS "${ZLIB_DIR}/*.h")
-file(GLOB ZLIB_SOURCES "${ZLIB_DIR}/*.c")
-list(REMOVE_ITEM ZLIB_SOURCES "${ZLIB_DIR}/minigzip.c") # Is tool
-list(REMOVE_ITEM ZLIB_SOURCES "${ZLIB_DIR}/maketree.c") # Is tool
+set(ZLIB_SOURCES
+    "${ZLIB_DIR}/adler32.c"
+    "${ZLIB_DIR}/compress.c"
+    "${ZLIB_DIR}/crc32.c"
+    "${ZLIB_DIR}/gzio.c"
+    "${ZLIB_DIR}/uncompr.c"
+    "${ZLIB_DIR}/deflate.c"
+    "${ZLIB_DIR}/trees.c"
+    "${ZLIB_DIR}/zutil.c"
+    "${ZLIB_DIR}/inflate.c"
+    "${ZLIB_DIR}/infblock.c"
+    "${ZLIB_DIR}/inftrees.c"
+    "${ZLIB_DIR}/infcodes.c"
+    "${ZLIB_DIR}/infutil.c"
+    "${ZLIB_DIR}/inffast.c")
 
-add_library(libzlib STATIC ${ZLIB_SOURCES})
-target_sources(libzlib PRIVATE ${ZLIB_HEADERS})
+add_library(libzlib STATIC)
+target_sources(libzlib PRIVATE ${ZLIB_SOURCES})
 target_include_directories(libzlib PUBLIC ${ZLIB_PARENT_DIR})
+target_compile_definitions(libzlib PUBLIC Z_PREFIX)
