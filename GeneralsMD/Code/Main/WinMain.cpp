@@ -49,7 +49,8 @@
 #include "Common/GameSounds.h"
 #include "Common/Debug.h"
 #include "Common/GameMemory.h"
-#include "Common/SafeDisc/CdaPfn.h"
+// NOTE(aha): Removes SafeDisc copy protection
+//#include "Common/SafeDisc/CdaPfn.h"
 #include "Common/StackDump.h"
 #include "Common/MessageStream.h"
 #include "Common/Registry.h"
@@ -756,6 +757,8 @@ static Bool initializeAppWindows( HINSTANCE hInstance, Int nCmdShow, Bool runWin
 
 }  // end initializeAppWindows
 
+// NOTE(aha): Removes SafeDisc copy protection from the game.
+#if 0
 void munkeeFunc(void);
 CDAPFN_DECLARE_GLOBAL(munkeeFunc, CDAPFN_OVERHEAD_L5, CDAPFN_CONSTRAINT_NONE);
 void munkeeFunc(void)
@@ -776,6 +779,7 @@ void checkProtection(void)
 	}
 #endif
 }
+#endif
 
 // strtrim ====================================================================
 /** Trim leading and trailing whitespace from a character string (in place). */
@@ -874,7 +878,8 @@ static CriticalSection critSec1, critSec2, critSec3, critSec4, critSec5;
 Int APIENTRY WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,
                       LPSTR lpCmdLine, Int nCmdShow )
 {
-	checkProtection();
+	// NOTE(aha): Removes SafeDisc copy protection from the game.
+	//checkProtection();
 
 #ifdef _PROFILE
   Profile::StartRange("init");
