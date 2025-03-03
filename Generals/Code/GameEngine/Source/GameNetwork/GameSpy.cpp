@@ -519,7 +519,7 @@ void ReadyChangedCallback(PEER peer, const char * nick,
 	}
 }
 
-void GameStartedCallback(PEER peer, unsigned int IP,
+void GameStartedCallback(PEER peer, SBServer server,
 												 const char * message, void * param)
 {
 	GameSpyStartGame();

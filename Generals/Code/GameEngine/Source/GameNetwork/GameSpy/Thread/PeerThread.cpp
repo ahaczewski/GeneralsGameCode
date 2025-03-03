@@ -657,7 +657,7 @@ static void playerFlagsChangedCallback(PEER peer, RoomType roomType, const char 
 static void listingGamesCallback(PEER peer, PEERBool success, const char * name, SBServer server, PEERBool staging, int msg, Int percentListed, void * param);
 static void roomUTMCallback(PEER peer, RoomType roomType, const char * nick, const char * command, const char * parameters, PEERBool authenticated, void * param);
 static void playerUTMCallback(PEER peer, const char * nick, const char * command, const char * parameters, PEERBool authenticated, void * param);
-static void gameStartedCallback(PEER peer, UnsignedInt IP, const char *message, void *param);
+static void gameStartedCallback(PEER peer, SBServer server, const char *message, void *param);
 static void globalKeyChangedCallback(PEER peer, const char *nick, const char *key, const char *val, void *param);
 static void roomKeyChangedCallback(PEER peer, RoomType roomType, const char *nick, const char *key, const char *val, void *param);
 
@@ -2410,7 +2410,7 @@ void roomMessageCallback(PEER peer, RoomType roomType, const char * nick, const 
 	}
 }
 
-void gameStartedCallback( PEER peer, UnsignedInt IP, const char *message, void *param )
+void gameStartedCallback( PEER peer, SBServer server, const char *message, void *param )
 {
 	PeerResponse resp;
 	resp.peerResponseType = PeerResponse::PEERRESPONSE_GAMESTART;
