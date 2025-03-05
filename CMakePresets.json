@@ -9,9 +9,14 @@
         {
             "name": "vc6",
             "displayName": "Build Zero Hour Binaries with NMake",
-            "generator": "NMake Makefiles",
+            "generator": "Ninja",
             "hidden": false,
             "binaryDir": "${sourceDir}/build/${presetName}",
+            "environment": {
+                "PATH": "$env{VS6_ROOT}/Common/MSDev98/Bin;$env{VS6_ROOT}/VC98/Bin;$env{VS6_ROOT}/Common/Tools/WinNT;$env{VS6_ROOT}/Common/Tools;$penv{PATH}",
+                "INCLUDE": "$env{VS6_ROOT}/VC98/ATL/Include;$env{VS6_ROOT}/VC98/Include;$env{VS6_ROOT}/VC98/MFC/Include",
+                "LIB": "$env{VS6_ROOT}/VC98/Lib;$env{VS6_ROOT}/VC98/MFC/Lib"
+            },
             "cacheVariables": {
                 "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
                 "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreadedDLL",    

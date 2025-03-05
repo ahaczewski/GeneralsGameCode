@@ -1,0 +1,42 @@
+name: CMake Build
+
+on:
+  push:
+    branches: [ '*' ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: self-hosted
+    env:
+      VS6_ROOT: C:\VS6
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Configure CMake
+      shell: cmd
+      run: |
+        cmake --version
+        cmake --preset vc6
+
+    - name: Build
+      shell: cmd
+      run: |
+        call %VS6_ROOT%\vcvarsall.bat
+        cd build\vc6
+        ninja
+
+#    - name: Test
+#      shell: cmd
+#      working-directory: ${{github.workspace}}/build
+#      run: |
+#        ctest -C Release --output-on-failure
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-artifacts
+        path: |
+          build/vc6/zerohour.exe
