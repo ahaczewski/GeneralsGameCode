@@ -20,6 +20,7 @@ compile_commands.json
 *.so*
 CPackConfig.cmake
 CPackSourceConfig.cmake
+CMakeUserPresets.json
 *.spec
 *.ncb
 *.sdf
