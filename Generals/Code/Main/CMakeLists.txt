@@ -1,12 +1,12 @@
-add_executable(zerohour WIN32)
+add_executable(generals)
 
-target_link_directories(zerohour PRIVATE
+target_link_directories(generals PRIVATE
     ../GameEngine
 )
 
-target_link_libraries(zerohour PRIVATE
-    GameEngine
-    GameEngineDevice  
+target_link_libraries(generals PRIVATE
+    GameEngineG
+    GameEngineDeviceG
     winmm
     imm32
     dbghelplib
@@ -41,22 +41,23 @@ file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/BuildVersion.h
 "
 )
 
-target_link_options(zerohour PRIVATE "/NODEFAULTLIB:libci.lib")
+target_link_options(generals PRIVATE "/NODEFAULTLIB:libci.lib")
 
-target_include_directories(zerohour PRIVATE
+target_include_directories(generals PRIVATE
     ../Libraries/Include
     ../Libraries/Source
-    .
+    ${CMAKE_CURRENT_SOURCE_DIR}
     ${CMAKE_CURRENT_BINARY_DIR}
+    ${CMAKE_BINARY_DIR}/Code/Libraries
 )
 
-target_sources(zerohour PRIVATE
+target_sources(generals PRIVATE
     WinMain.cpp
     WinMain.h
 )
 
 if(WIN32 OR "${CMAKE_SYSTEM}" MATCHES "Windows")
-    target_sources(zerohour PRIVATE
+    target_sources(generals PRIVATE
         RTS.RC
     )
 endif()

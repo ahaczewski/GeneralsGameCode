@@ -13,8 +13,6 @@ target_link_libraries(Compression PUBLIC
     libzlib
 )
 
-add_compile_definitions(Z_PREFIX)
-
 target_sources(Compression PRIVATE
     EAC/btreeabout.cpp
     EAC/btreedecode.cpp

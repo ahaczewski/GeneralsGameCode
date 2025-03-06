@@ -5,7 +5,6 @@ if(WIN32 OR "${CMAKE_SYSTEM}" MATCHES "Windows")
         OUTPUT BrowserDispatch_i.c BrowserDispatch.h
         COMMAND midl.exe "${CMAKE_CURRENT_LIST_DIR}\\BrowserDispatch.idl" /header BrowserDispatch.h
         WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-        BYPRODUCTS BrowserDispatch.h BrowserDispatch_i.c
         DEPENDS "${CMAKE_CURRENT_LIST_DIR}/BrowserDispatch.idl"
         VERBATIM
     )

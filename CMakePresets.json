@@ -14,7 +14,7 @@
             "binaryDir": "${sourceDir}/build/${presetName}",
             "cacheVariables": {
                 "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
-                "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL",    
+                "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreadedDLL",    
                 "CMAKE_BUILD_TYPE": "Release",
                 "THYME_FLAGS": "/W3"
             }
@@ -27,7 +27,7 @@
             "binaryDir": "${sourceDir}/build/${presetName}",
             "cacheVariables": {
                 "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
-                "CMAKE_MSVC_DEBUG_INFORMATION_FORMAT": "$<$<CONFIG:Release,Debug,RelWithDebInfo>:ProgramDatabase>",
+                "CMAKE_MSVC_DEBUG_INFORMATION_FORMAT": "$<$<CONFIG:Release,Debug,RelWithDebInfo>:Embedded>",
                 "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL"
             }
         },
@@ -37,7 +37,7 @@
             "hidden": false,
             "displayName": "Windows builds",
             "cacheVariables": {
-                "THYME_FLAGS": "/Zc:strictStrings;/W3"
+                "THYME_FLAGS": "/W3"
             }
         },
         {
