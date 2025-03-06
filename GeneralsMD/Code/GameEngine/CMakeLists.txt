@@ -4,7 +4,7 @@ target_include_directories(GameEngine PUBLIC
     Include
 )
 
-set_target_properties(GameEngine PROPERTIES OUTPUT_NAME $<IF:$<CONFIG:Debug>,GameEngineDebug,GameEngine>)
+set_target_properties(GameEngine PROPERTIES OUTPUT_NAME_DEBUG GameEngineDebug)
 
 target_include_directories(GameEngine PRIVATE
     Include/Precompiled

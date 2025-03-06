@@ -9,7 +9,7 @@
         {
             "name": "vc6",
             "displayName": "Build Zero Hour Binaries with NMake",
-            "generator": "Ninja",
+            "generator": "NMake Makefiles",
             "hidden": false,
             "binaryDir": "${sourceDir}/build/${presetName}",
             "environment": {
@@ -19,7 +19,7 @@
             },
             "cacheVariables": {
                 "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
-                "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreadedDLL",    
+                "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL",
                 "CMAKE_BUILD_TYPE": "Release",
                 "THYME_FLAGS": "/W3"
             }

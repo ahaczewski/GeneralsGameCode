@@ -28,4 +28,4 @@ target_sources(profile PRIVATE
 	profile_doc.h
 )
 
-set_target_properties(profile PROPERTIES OUTPUT_NAME $<IF:$<CONFIG:Debug>,profiledebug,profile>)
+set_target_properties(profile PROPERTIES OUTPUT_NAME_DEBUG profiledebug)
