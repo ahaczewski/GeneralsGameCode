@@ -30,7 +30,7 @@ macro(setup_patchgrabber appname)
         comctl32
         winmm
         wwvegas
-        GameEngine
+        gameengine
     )
 
     if(WIN32 OR "${CMAKE_SYSTEM}" MATCHES "Windows")
