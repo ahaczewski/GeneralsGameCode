@@ -151,15 +151,9 @@ set_target_properties(max2w3d PROPERTIES SUFFIX ".dle")
 
 target_include_directories(max2w3d PRIVATE
     "../pluglib"
-    "../../../../../Dependencies/.maxsdk/Include" # Hack
-    "../../../../../Dependencies/.maxsdk/Include/Maxscrpt" # Hack
 )
 
 target_sources(max2w3d PRIVATE ${MAX2W3D_SRC})
-
-target_link_directories(max2w3d PRIVATE
-    "../../../../../Dependencies/.maxsdk/Lib" # Hack
-)
 
 # TODO: What does W3D_MAX4 do? Needs cmake option?
 target_compile_definitions(max2w3d PRIVATE W3D_MAX4)
@@ -172,15 +166,7 @@ target_link_libraries(max2w3d PRIVATE
     d3d8lib
     pluglib
     winmm
-    # maxsdk begin
-    bmm
-    core
-    geom
-    Maxscrpt
-    maxutil
-    mesh
-    Paramblk2
-    # maxsdk end
+    maxsdk
 )
 
 set_target_properties(max2w3d PROPERTIES LINK_FLAGS "/DEF:max2w3d.def")

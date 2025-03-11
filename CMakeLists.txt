@@ -49,6 +49,7 @@ include(cmake/lzhl.cmake)
 include(cmake/zlib.cmake)
 add_subdirectory(Dependencies/Benchmark)
 add_subdirectory(Dependencies/SafeDisc)
+add_subdirectory(Dependencies/MaxSDK)
 
 # EA Compression library, shared between games (diff is comments only)
 add_subdirectory(GeneralsMD/Code/Libraries/Source/Compression)

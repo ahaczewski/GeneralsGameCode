@@ -55,8 +55,6 @@ set(PLUGLIB_SRC
 
 add_library(pluglib STATIC)
 
-target_include_directories(pluglib PRIVATE
-    "../../../../../Dependencies/.maxsdk/Include" # Hack
-)
+target_link_libraries(pluglib PRIVATE maxsdk)
 
 target_sources(pluglib PRIVATE ${PLUGLIB_SRC})
