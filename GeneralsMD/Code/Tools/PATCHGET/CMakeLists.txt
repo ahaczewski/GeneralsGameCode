@@ -31,11 +31,15 @@ macro(setup_patchgrabber appname)
         winmm
         wwvegas
         gameengine
+        dbghelplib
+        profile
     )
 
     if(WIN32 OR "${CMAKE_SYSTEM}" MATCHES "Windows")
         target_sources(${appname} PRIVATE SCRIPT1.RC)
     endif()
+
+    set_target_properties(${appname} PROPERTIES EXCLUDE_FROM_DEFAULT_BUILD_DEBUG TRUE)
 endmacro()
 
 setup_patchgrabber(patchgrabber_en)
